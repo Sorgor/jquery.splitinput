@@ -1,6 +1,6 @@
 jquery.splittedInput
 ================
-
+Splits one input to many inputs
 
 usage: 
 
