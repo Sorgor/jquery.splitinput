@@ -4,16 +4,34 @@ $.fn.extend({
 
         _this.inputs = [];
         _this.parent = $(this).parent();
+
+        // main input, that will be splitted
+        // finally will contain joined globalBuffer value
         _this.globalInput = $(this);
+
+        // an array, containing vals of inputs
         _this.globalBuffer = [];
 
         _this.parent.append(_this.globalInput);
 
+        // setting and extending default settings
         _this.settings = $.extend({
-            template: "{10}",
+            // template of a replacing inputs 
+            // format for input is {num} where num is maxlength
+            // eg. {3} - {3} - {2} / {2} matches 123 - 456 - 78 - 90 
+            // and splits one input into 4 inputs
+            template: "{10}", 
+
+            // classname applying to an inputs
             class: "",
+
+            // if true, cursor jumps to next input after filling prev one
             autoJump: true,
+
+            //pattern attribute of an inputs
             pattern: "",
+
+            //transformation function applied to entered chars
             transform: function(string){return string;}
         }, settings);
 
