@@ -4,7 +4,7 @@ $.fn.extend({
 
         _this.inputs = [];
         _this.parent = $(this).parent();
-        _this.globalInput = $(this).clone().attr('type', 'hidden');
+        _this.globalInput = $(this);
         _this.globalBuffer = [];
 
         _this.parent.append(_this.globalInput);
@@ -22,7 +22,7 @@ $.fn.extend({
         };
 
         _this.replacedString = settings.template.replace(/\{(\d*)\}/g, function(matched, size){
-            var el = $('<input>').attr('type', 'text');
+            var el = $('<input>').attr('type', 'text').addClass(settings.class);
 
             if (size)
                 el.attr('maxlength', size)
@@ -36,7 +36,8 @@ $.fn.extend({
             return toReturn;
         });
 
-        $(this).replaceWith(_this.replacedString);
+        _this.parent.append(_this.replacedString);
+        $(_this).attr('type', 'hidden');
 
         _this.inputs = []
         _this.buffer = []
@@ -77,6 +78,7 @@ $.fn.extend({
         }
         _this.updateGlobal = function(){
             _this.globalInput.val(_this.getGlobalBuffer().join(''));
+            _this.globalInput.trigger('change');
         }
     }
 });

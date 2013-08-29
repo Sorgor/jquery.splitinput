@@ -3,14 +3,14 @@
     <title>jquery.splittedinput — demo</title>
     <meta charset="utf-8">
     <style>
-        input.bluecolored {border:none;width: 2em;text-align: center}
+        input.bluecolored {;width: 3em;}
     </style>
     <script src="../lib/jquery-2.0.3.min.js"></script>
     <script src="../src/jquery.splittedinput.js"></script>
     <script>
         $(document).ready(function(){
             $('#splitme').splitInput({
-                template: '( {3} ) {3} - {2} - {2} / {10}',
+                template: '+7 ( {3} ) {3} - {2} - {2}',
                 class: 'bluecolored',
                 pattern: '\\d*',
                 transform: function(string){return string.toUpperCase()}
