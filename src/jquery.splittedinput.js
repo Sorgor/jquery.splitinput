@@ -73,7 +73,6 @@ $.fn.extend({
             _this.parent.find('input[type=text]').each(function(index, item){
                 _this.globalBuffer.push($(this).val());
             })
-            console.log(_this.globalBuffer);
             return _this.globalBuffer;
         }
         _this.updateGlobal = function(){
