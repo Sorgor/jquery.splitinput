@@ -4,6 +4,10 @@ $.fn.extend({
 
         _this.inputs = [];
         _this.parent = $(this).parent();
+        _this.globalInput = $(this).clone().attr('type', 'hidden');
+        _this.globalBuffer = [];
+
+        _this.parent.append(_this.globalInput);
 
         _this.settings = $.extend({
             template: "{10}",
@@ -36,13 +40,14 @@ $.fn.extend({
 
         _this.inputs = []
         _this.buffer = []
-        _this.parent.find('input').each(function(index, item){
+        _this.parent.find('input[type=text]').each(function(index, item){
             _this.inputs.push(item);
             if (_this.settings.autoJump)
                 $(item).keypress(function(e){
                     var k = e.which;
                     _this.buffer.push(settings.transform(String.fromCharCode(k)));
                     $(this).val(_this.buffer.join(''))
+                    _this.updateGlobal();
                     if ($(this).val().length >= ($(this).attr('maxlength'))) {
                         if (_this.inputs[index + 1])
                         {
@@ -58,7 +63,20 @@ $.fn.extend({
                 });
                 $(item).focus(function(e){
                     $(this).val('');
+                    _this.updateGlobal();
                 });
         });
+
+        _this.getGlobalBuffer = function(){
+            _this.globalBuffer = [];
+            _this.parent.find('input[type=text]').each(function(index, item){
+                _this.globalBuffer.push($(this).val());
+            })
+            console.log(_this.globalBuffer);
+            return _this.globalBuffer;
+        }
+        _this.updateGlobal = function(){
+            _this.globalInput.val(_this.getGlobalBuffer().join(''));
+        }
     }
 });
