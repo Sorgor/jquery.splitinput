@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>jquery.splittedinput — demo</title>
+    <meta charset="utf-8">
+    <style>
+        input.bluecolored {border:none;width: 5em;text-align: center}
+    </style>
+    <script src="../lib/jquery-2.0.3.min.js"></script>
+    <script src="../src/jquery.splittedinput.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#splitme').splitInput({
+                template: '({3}) {3} - {2} - {2}',
+                class: 'bluecolored'
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div>
+        <input type="text" name="splitme" id="splitme">
+    </div>
+</body>
+</html>
