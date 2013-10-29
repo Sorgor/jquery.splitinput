@@ -1,6 +1,6 @@
-jquery.splittedInput
+jquery.splitInput
 ================
-Splits one input to many inputs
+jQuery plugin that splits one input to many
 
 usage: 
 
